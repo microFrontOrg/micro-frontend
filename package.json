@@ -1,0 +1,19 @@
+{
+  "name": "micro-frantend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"npm run start:master\" \"npm run start:app1\" \"npm run start:app2\"",
+    "start:master": "cd ./masterApp && npm start",
+    "start:app1": "cd ./app1 && npm start",
+    "start:app2": "cd ./app2 && npm start",
+    "install": "concurrently \"npm run install:master\" \"npm run install:app1\" \"npm run install:app2\"",
+    "install:master": "cd ./masterApp && npm install",
+    "install:app1": "cd ./app1 && npm install",
+    "install:app2": "cd ./app2 && npm install"
+  },
+  "author": "",
+  "license": "ISC"
+}
