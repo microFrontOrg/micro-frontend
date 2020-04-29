@@ -2,8 +2,10 @@ import { Suspense } from 'react';
 import { Form, Row, Col, Input, Button, ConfigProvider } from 'antd';
 import zh_CN from 'antd/es/locale/zh_CN';
 import SystemLayout from '@/layouts/SystemLayout';
+import LoginLayout from '@/layouts/LoginLayout';
+import Login from '@/pages/Login'
 import './index.less';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 class App extends React.Component {
     constructor(props) {
@@ -14,13 +16,15 @@ class App extends React.Component {
         return (
             <ConfigProvider locale={zh_CN}>
                 <Suspense fallback={<div>loading</div>}>
-                    {/* <Router>
+                    <Router>
                         <Switch>
-                            <Route path='/' component={SystemLayout}></Route>
+                            <Route exact path='/login' component={LoginLayout}>
+                                <Route path='' component={Login} />
+                            </Route>
+                            <Route path='/system' component={SystemLayout}></Route>
+                            <Redirect from='/' to='/login' />
                         </Switch>
-                    </Router> */}
-                    <div>444</div>
-                    <div id="container"></div>
+                    </Router>
                 </Suspense>
             </ConfigProvider>
 
@@ -28,5 +32,7 @@ class App extends React.Component {
         )
     }
 }
+
+
 
 export default Form.create()(App);

@@ -1,10 +1,10 @@
 import { Suspense } from 'react';
-import { Form, Row, Col, Input, Button, ConfigProvider } from 'antd';
+import { ConfigProvider } from 'antd';
 import zh_CN from 'antd/es/locale/zh_CN';
 import './index.less';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 import routes from '@/routes';
-import SystemLayout from '@/layouts/SystemLayout';
+import User from '@/pages/User';
 
 class App extends React.Component {
     constructor(props) {
@@ -14,21 +14,18 @@ class App extends React.Component {
     render() {
         return (
             <ConfigProvider locale={zh_CN}>
-                <Suspense fallback={<div>loading</div>}>
-                    <Router>
-                        <Switch>
-                            <SystemLayout>
-                                {routes.map(item => {
-                                    return <Route path={item.path} key={item.path} component={item.component}></Route>
-                                })}
-                            </SystemLayout>
-                        </Switch>
-                    </Router>
-
+                <Suspense fallback='loading'>
+                    <HashRouter>
+                        {
+                            routes.map(item => {
+                                return <Route key={item.path} path={item.path} component={item.component}></Route>
+                            })
+                        }
+                    </HashRouter>
                 </Suspense>
             </ConfigProvider>
         )
     }
 }
 
-export default Form.create()(App);
+export default App;

@@ -21,7 +21,34 @@ class SystemLayout extends Component {
                     </Menu>
                 </HeaderLayout>
                 <Layout>
-                    <div id="container"></div>
+                    <SiderLayout>
+                        <Menu mode='inline' theme="dark" style={{ height: '100%' }}>
+                            <SubMenu title={
+                                <span>
+                                    <Icon type="mail" />
+                                    <span>Navigation One</span>
+                                </span>
+                            }>
+                                <MenuItem key='1'>option1</MenuItem>
+                                <MenuItem key='2'>option1</MenuItem>
+                                <MenuItem key='3'>option1</MenuItem>
+                                <MenuItem key='4'>option1</MenuItem>
+                            </SubMenu>
+                        </Menu>
+                    </SiderLayout>
+                    <ContentLayout>
+                        <BreadcrumbWrap>
+                            <Container>
+                                <Breadcrumb>
+                                    <Breadcrumb.Item>Home</Breadcrumb.Item>
+                                    <Breadcrumb.Item>Application Center</Breadcrumb.Item>
+                                    <Breadcrumb.Item>Application List</Breadcrumb.Item>
+                                    <Breadcrumb.Item>An AppFlication</Breadcrumb.Item>
+                                </Breadcrumb>
+                            </Container>
+                        </BreadcrumbWrap>
+                        <ContentWrap id="container"></ContentWrap>
+                    </ContentLayout>
                 </Layout>
             </Layout>
         )

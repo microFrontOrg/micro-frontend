@@ -22,9 +22,10 @@ class Login extends React.Component {
     }
 
     handleSubmit = () => {
-        this.props.form.validateFieldsAndScroll(function (err, values) {
+        this.props.form.validateFieldsAndScroll((err, values) => {
             if (err) { return; }
             console.log(values);
+            this.props.history.push('/system/app1');
         })
     }
 

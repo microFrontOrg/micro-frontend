@@ -8,6 +8,7 @@ if (module && module.hot) {
 }
 
 ReactDom.render(<App />, document.getElementById('app'));
+const container = document.getElementById('container');
 
 const request = url =>
     fetch(url, {
@@ -16,8 +17,8 @@ const request = url =>
 
 registerMicroApps(
     [
-        { name: 'app1', entry: '//localhost:1001', container: '#container', activeRule: '/one' },
-        { name: 'app2', entry: '//localhost:1002', container: '#container', activeRule: '/app2' }
+        { name: 'app1', entry: '//localhost:1001', container: container, activeRule: '/system/app1' },
+        { name: 'app2', entry: '//localhost:1002', container: container, activeRule: '/system/app2' }
     ],
     {
         beforeLoad: [
@@ -51,7 +52,7 @@ registerMicroApps(
     }
 )
 
-setDefaultMountApp('/one')
-
-start();
+start({
+    sandbox: true
+});
 
