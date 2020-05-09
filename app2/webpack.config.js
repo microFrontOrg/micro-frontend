@@ -31,7 +31,6 @@ const webpackConfig = {
   output: {
     filename: '[name].[hash:8].js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '',
     library: `${packageName}-[name]`,
     libraryTarget: 'umd',
     jsonpFunction: `webpackJsonp_${packageName}`,

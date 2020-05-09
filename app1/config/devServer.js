@@ -1,3 +1,9 @@
+/*
+ * @Description: 
+ * @Author: 郭军伟
+ * @Date: 2020-04-29 09:08:37
+ * @lastEditTime: Do not edit
+ */
 const devServer = {
     historyApiFallback: true,
     host: 'localhost',

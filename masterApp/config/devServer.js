@@ -1,3 +1,9 @@
+/*
+ * @Description: 
+ * @Author: 郭军伟
+ * @Date: 2020-04-29 09:08:37
+ * @lastEditTime: Do not edit
+ */
 const devServer = {
     historyApiFallback: true,
     host: 'localhost',
@@ -12,14 +18,6 @@ const devServer = {
         errors: true,
         assets: true
     },
-    proxy: {
-        '/app1': {
-            target: 'http://localhost:1001'
-        },
-        '/app2': {
-            target: 'http://localhost:1002'
-        }
-    }
 }
 
 module.exports = devServer;

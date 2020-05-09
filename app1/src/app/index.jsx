@@ -2,9 +2,8 @@ import { Suspense } from 'react';
 import { ConfigProvider } from 'antd';
 import zh_CN from 'antd/es/locale/zh_CN';
 import './index.less';
-import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import routes from '@/routes';
-import User from '@/pages/User';
 
 class App extends React.Component {
     constructor(props) {
@@ -15,13 +14,14 @@ class App extends React.Component {
         return (
             <ConfigProvider locale={zh_CN}>
                 <Suspense fallback='loading'>
-                    <HashRouter>
+                    <Router>
+                        <Redirect from='/' to={routes[0].path} />
                         {
                             routes.map(item => {
-                                return <Route key={item.path} path={item.path} component={item.component}></Route>
+                                return <Route key={item.path} path={item.path} component={item.component} />
                             })
                         }
-                    </HashRouter>
+                    </Router>
                 </Suspense>
             </ConfigProvider>
         )

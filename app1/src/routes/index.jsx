@@ -1,13 +1,11 @@
 
 const User = lazy(() => import('@/pages/User'));
+const appName = 'app1';
 
-const genPath = function (path) {
-    return '/app1' + path;
-}
 const routes = [
     {
         component: User,
-        path: genPath('/user'),
+        path: `/${appName}/user`,
     }
 ]
 

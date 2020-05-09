@@ -30,7 +30,7 @@ const webpackConfig = {
   output: {
     filename: '[name].[hash:8].js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: ''
+    publicPath: '//localhost:1000/'
   },
   resolve: {
     extensions: ['.jsx', '.js'],
