@@ -32,10 +32,17 @@ class Login extends React.Component {
         })
     }
 
+    handleKeyDown = (e) => {
+        console.log(e.keyCode);
+        if (e.keyCode === 13) {
+            this.handleSubmit();
+        }
+    }
+
     render() {
         return (
             <LoginLayout>
-                <Form className='login-wrap'>
+                <Form className='login-wrap' onSubmit={this.handleSubmit}>
                     <h2 className="login-title">后台管理系统</h2>
                     <div className="input-wrap-form">
                         {
@@ -48,7 +55,11 @@ class Login extends React.Component {
                                 )
                             })
                         }
-                        <Button type='primary' style={{ width: '100%' }} onClick={this.handleSubmit}>登录</Button>
+                        <Button
+                            type='primary' style={{ width: '100%' }}
+                            htmlType='submit'
+                            onClick={this.handleSubmit}
+                        >登录</Button>
                     </div>
                 </Form>
             </LoginLayout>
