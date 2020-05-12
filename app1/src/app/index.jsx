@@ -14,7 +14,7 @@ class App extends React.Component {
         return (
             <ConfigProvider locale={zh_CN}>
                 <Suspense fallback='loading'>
-                    <Router>
+                    <Router basename='/system/app1'>
                         <Redirect from='/' to={routes[0].path} />
                         {
                             routes.map(item => {

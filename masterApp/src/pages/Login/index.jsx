@@ -1,5 +1,5 @@
 import { FieldForm } from '@/components';
-import { Form, Button, Row, Col, Icon, Radio, Input } from 'antd';
+import { Form, Button, Row, Col, Icon, Radio, Input, message } from 'antd';
 import LoginLayout from '@/layouts/LoginLayout';
 import './index.module.less';
 
@@ -24,8 +24,11 @@ class Login extends React.Component {
     handleSubmit = () => {
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (err) { return; }
-            console.log(values);
-            this.props.history.push('/system/app1');
+            if (values.username === 'admin' && values.password === '123456') {
+                this.props.history.push('/system');
+            } else {
+                message.error('用户名或密码错误');
+            }
         })
     }
 

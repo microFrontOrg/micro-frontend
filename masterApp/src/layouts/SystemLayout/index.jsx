@@ -2,11 +2,16 @@ import { Layout, Menu, Icon, Breadcrumb } from 'antd';
 import MenuItem from 'antd/lib/menu/MenuItem';
 import SubMenu from 'antd/lib/menu/SubMenu';
 import { Container } from '@/components';
+import { microInit } from '@/qiankun';
 const { Header, Sider, Content } = Layout;
 
 class SystemLayout extends Component {
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
+        microInit(); // 子应用初始化
     }
 
     render() {

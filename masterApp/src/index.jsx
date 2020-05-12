@@ -7,7 +7,3 @@ if (module && module.hot) {
 }
 
 ReactDom.render(<App />, document.getElementById('app'));
-
-microInit();
-
-
