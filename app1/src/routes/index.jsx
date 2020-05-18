@@ -5,11 +5,11 @@ const Role = lazy(() => import('@/pages/Role'))
 const routes = [
   {
     component: User,
-    path: `/app1/user`
+    path: `/app1/service_online/OnlineService`
   },
   {
     component: Role,
-    path: '/app1/role'
+    path: '/app1/AppConfigContent/VersionUpdate'
   }
 ]
 

@@ -3,11 +3,11 @@ const Menu = lazy(() => import('@/pages/Menu'))
 
 const routes = [
   {
-    path: '/app2/user',
+    path: '/app2/MallManager/ProviderManager',
     component: User
   },
   {
-    path: '/app2/menu',
+    path: '/app2/MallManager/WarehouseManager',
     component: Menu
   }
 ]
