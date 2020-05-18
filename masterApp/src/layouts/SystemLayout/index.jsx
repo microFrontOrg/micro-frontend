@@ -25,15 +25,25 @@ class SystemLayout extends Component {
         <HeaderLayout>
           <Logo></Logo>
           <Menu theme='dark' mode='horizontal' style={{ lineHeight: '64px' }}>
-            <MenuItem key='1'>nav 1</MenuItem>
-            <MenuItem key='2'>nav 2</MenuItem>
+            <MenuItem key='1' onClick={() => this.routeChange('/app1')}>
+              app1
+            </MenuItem>
+            <MenuItem key='2' onClick={() => this.routeChange('/app2')}>
+              app2
+            </MenuItem>
             <MenuItem key='3'>nav 3</MenuItem>
           </Menu>
         </HeaderLayout>
         <Layout>
           <SiderLayout>
-            <Menu mode='inline' theme='dark' style={{ height: '100%' }}>
+            <Menu
+              mode='inline'
+              theme='dark'
+              style={{ height: '100%' }}
+              defaultOpenKeys={['1-1']}
+            >
               <SubMenu
+                key='1-1'
                 title={
                   <span>
                     <Icon type='mail' />
@@ -57,8 +67,22 @@ class SystemLayout extends Component {
                 >
                   角色管理
                 </MenuItem>
-                <MenuItem key='3'>option1</MenuItem>
-                <MenuItem key='4'>option1</MenuItem>
+                <MenuItem
+                  key='3'
+                  onClick={() => {
+                    this.routeChange('/app2/menu')
+                  }}
+                >
+                  菜单管理
+                </MenuItem>
+                <MenuItem
+                  key='4'
+                  onClick={() => {
+                    this.routeChange('/app2/user')
+                  }}
+                >
+                  app2-用户管理
+                </MenuItem>
               </SubMenu>
             </Menu>
           </SiderLayout>

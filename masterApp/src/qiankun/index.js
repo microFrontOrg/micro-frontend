@@ -19,7 +19,7 @@ function register() {
 export function microInit() {
   register();
 
-  setDefaultMountApp(apps[0].activeRule);
+  setDefaultMountApp(apps[1].activeRule);
 
   start();
 }

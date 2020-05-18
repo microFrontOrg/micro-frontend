@@ -20,16 +20,18 @@ class App extends React.Component {
       <ConfigProvider locale={zh_CN}>
         <Suspense fallback='loading'>
           <Router basename='/system'>
-            <Redirect from='/' to={routes[0].path} />
-            {routes.map(item => {
-              return (
-                <Route
-                  key={item.path}
-                  path={item.path}
-                  component={item.component}
-                />
-              )
-            })}
+            <Switch>
+              {routes.map(item => {
+                return (
+                  <Route
+                    key={item.path}
+                    path={item.path}
+                    component={item.component}
+                  />
+                )
+              })}
+              <Redirect exact from='/' to={routes[0].path} />
+            </Switch>
           </Router>
         </Suspense>
       </ConfigProvider>

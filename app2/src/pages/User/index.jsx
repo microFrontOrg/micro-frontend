@@ -106,16 +106,6 @@ class User extends Component {
                         }
                     ]
                 }
-            },
-            {
-                type: 'slider', id: 'slider', col: 8, defaultValue: 0, formItem: { label: '得分', ...formItemLayout }, config: {
-                    step: 1,
-                    max: 100,
-                    min: 0,
-                    style: {
-                        width: '100%'
-                    }
-                }
             }
         ]
     }
