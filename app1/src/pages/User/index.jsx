@@ -1,164 +1,218 @@
-import { FieldForm, Title, FieldFormWithCol, ButtonWrap, Container } from '@/components';
-import { Form, Row, Col, Checkbox, Button } from 'antd';
-import { filterInvalidValue } from '@/utils/filters';
-import { useState } from 'react';
+import {
+  FieldForm,
+  Title,
+  FieldFormWithCol,
+  ButtonWrap,
+  Container
+} from '@/components'
+import { Form, Row, Col, Checkbox, Button } from 'antd'
+import { filterInvalidValue } from '@/utils/filters'
+import { useState } from 'react'
 
 const formItemLayout = {
-    labelCol: {
-        span: 6
-    },
-    wrapperCol: {
-        span: 18
-    }
+  labelCol: {
+    span: 6
+  },
+  wrapperCol: {
+    span: 18
+  }
 }
 
-function User(props) {
-    const [checkbox, setCheckbox] = useState(['red', 'green']);
-    const { form } = props;
-    const fields = [
-        {
-            type: 'input', id: 'input', col: 8, formItem: { label: '姓名', ...formItemLayout }
+function User (props) {
+  const [checkbox, setCheckbox] = useState(['red', 'green'])
+  const { form } = props
+  const fields = [
+    {
+      type: 'input',
+      id: 'input',
+      col: 8,
+      formItem: { label: '姓名', ...formItemLayout }
+    },
+    {
+      type: 'checkbox',
+      id: 'checkbox',
+      col: 8,
+      valueField: 'code',
+      labelField: 'name',
+      value: checkbox,
+      formItem: { label: '颜色', ...formItemLayout },
+      config: {
+        onChange: e => {
+          this.setState({
+            checkbox: e
+          })
         },
-        {
-            type: 'checkbox', id: 'checkbox', col: 8, valueField: 'code', labelField: 'name', value: checkbox, formItem: { label: '颜色', ...formItemLayout }, config: {
-                onChange: (e) => {
-                    this.setState({
-                        checkbox: e
-                    })
-                },
-                options: [
-                    { name: '红色', code: 'red' },
-                    { name: '蓝色', code: 'blue' },
-                    { name: '绿色', code: 'green' },
-                ]
-            }
-        },
-        {
-            type: 'radio', id: 'radio', value: '1', col: 8, formItem: { label: '性别', ...formItemLayout }, config: {
-                options: [
-                    { value: '1', label: '男' },
-                    { value: '0', label: '女' }
-                ]
-            }
-        },
-        {
-            type: 'select', id: 'select', value: '0', col: 8, formItem: { label: '性别2', ...formItemLayout }, config: {
-                options: [
-                    { value: '1', label: '男' },
-                    { value: '0', label: '女' }
-                ]
-            }
-        },
-        {
-            type: 'switch', id: 'switch', value: false, col: 8, formItem: { label: '状态', ...formItemLayout }
-            , decorator: {
-                valuePropName: 'checked'
-            }, config: {
-                checkedChildren: '启用',
-                unCheckedChildren: '禁用',
-                onChange: (e) => {
-                    console.log(e)
-                }
-            }
-        },
-        {
-            type: 'week', id: 'date', col: 8, formItem: { label: '日期', ...formItemLayout }, config: {
-                format: 'YYYY-MM-DD HH:mm',
-                style: { width: '100%' }
-            }
-        },
-        {
-            type: 'input', id: 'name', col: 8, formItem: { label: '姓名', ...formItemLayout }
-        },
-        {
-            type: 'cascader', id: 'cascader', col: 8, formItem: { label: '树', ...formItemLayout }, valueField: 'aaa', labelField: 'bbb', childrenField: 'ccc', config: {
-                options: [
-                    {
-                        aaa: 'label1',
-                        bbb: 'value1',
-                        ccc: [
-                            {
-                                aaa: 'label1-1',
-                                bbb: 'value1-1'
-                            },
-                            {
-                                aaa: 'label1-2',
-                                bbb: 'value1-2'
-                            }
-                        ]
-                    },
-                    {
-                        aaa: 'label2',
-                        bbb: 'value2',
-                        ccc: [
-                            {
-                                aaa: 'label2-1',
-                                bbb: 'value2-1'
-                            },
-                            {
-                                aaa: 'label2-2',
-                                bbb: 'value2-2'
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        {
-            type: 'slider', id: 'slider', col: 8, defaultValue: 0, formItem: { label: '得分', ...formItemLayout }, config: {
-                step: 1,
-                max: 100,
-                min: 0,
-                style: {
-                    width: '100%'
-                }
-            }
+        options: [
+          { name: '红色', code: 'red' },
+          { name: '蓝色', code: 'blue' },
+          { name: '绿色', code: 'green' }
+        ]
+      }
+    },
+    {
+      type: 'radio',
+      id: 'radio',
+      value: '1',
+      col: 8,
+      formItem: { label: '性别', ...formItemLayout },
+      config: {
+        options: [
+          { value: '1', label: '男' },
+          { value: '0', label: '女' }
+        ]
+      }
+    },
+    {
+      type: 'select',
+      id: 'select',
+      value: '0',
+      col: 8,
+      formItem: { label: '性别2', ...formItemLayout },
+      config: {
+        options: [
+          { value: '1', label: '男' },
+          { value: '0', label: '女' }
+        ]
+      }
+    },
+    {
+      type: 'switch',
+      id: 'switch',
+      value: false,
+      col: 8,
+      formItem: { label: '状态', ...formItemLayout },
+      decorator: {
+        valuePropName: 'checked'
+      },
+      config: {
+        checkedChildren: '启用',
+        unCheckedChildren: '禁用',
+        onChange: e => {
+          console.log(e)
         }
-    ]
-
-    function getData() {
-        form.validateFields((error, values) => {
-            console.log(filterInvalidValue(values));
-        })
+      }
+    },
+    {
+      type: 'week',
+      id: 'date',
+      col: 8,
+      formItem: { label: '日期', ...formItemLayout },
+      config: {
+        format: 'YYYY-MM-DD HH:mm',
+        style: { width: '100%' }
+      }
+    },
+    {
+      type: 'input',
+      id: 'name',
+      col: 8,
+      formItem: { label: '姓名', ...formItemLayout }
+    },
+    {
+      type: 'cascader',
+      id: 'cascader',
+      col: 8,
+      formItem: { label: '树', ...formItemLayout },
+      valueField: 'aaa',
+      labelField: 'bbb',
+      childrenField: 'ccc',
+      config: {
+        options: [
+          {
+            aaa: 'label1',
+            bbb: 'value1',
+            ccc: [
+              {
+                aaa: 'label1-1',
+                bbb: 'value1-1'
+              },
+              {
+                aaa: 'label1-2',
+                bbb: 'value1-2'
+              }
+            ]
+          },
+          {
+            aaa: 'label2',
+            bbb: 'value2',
+            ccc: [
+              {
+                aaa: 'label2-1',
+                bbb: 'value2-1'
+              },
+              {
+                aaa: 'label2-2',
+                bbb: 'value2-2'
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      type: 'slider',
+      id: 'slider',
+      col: 8,
+      defaultValue: 0,
+      formItem: { label: '得分', ...formItemLayout },
+      config: {
+        step: 1,
+        max: 100,
+        min: 0,
+        style: {
+          width: '100%'
+        }
+      }
     }
+  ]
 
-    return (
-        <div>
-            <Container>
-                <Title text='查询条件' />
-                <Form>
-                    <Row>
-                        {
-                            fields.map((field) => {
-                                return <FieldFormWithCol {...field} key={field.id} form={form} />
-                            })
-                        }
-                    </Row>
-                    <RowStyle>
-                        <ButtonWrap>
-                            <Button onClick={getData} type='primary'>查询</Button>
-                            <Button onClick={getData} type='primary'>重置</Button>
-                            <Button onClick={getData} type='primary'>导出</Button>
-                        </ButtonWrap>
-                    </RowStyle>
-                </Form>
-            </Container>
+  function getData () {
+    form.validateFields((error, values) => {
+      console.log(filterInvalidValue(values))
+    })
+  }
 
-            <ListWrap>
-                <Container>
-                    <Title text='查询结果' />
-                </Container>
-            </ListWrap>
-        </div>
-    )
+  return (
+    <div>
+      <Container>
+        <Title text='查询条件' />
+        <Form>
+          <Row>
+            {fields.map(field => {
+              return <FieldFormWithCol {...field} key={field.id} form={form} />
+            })}
+          </Row>
+          <RowStyle>
+            <ButtonWrap>
+              <Button onClick={getData} type='primary'>
+                查询
+              </Button>
+              <Button onClick={getData} type='primary'>
+                重置
+              </Button>
+              <Button onClick={getData} type='primary'>
+                导出
+              </Button>
+            </ButtonWrap>
+          </RowStyle>
+        </Form>
+      </Container>
+
+      <ListWrap>
+        <Container>
+          <Title text='查询结果' />
+        </Container>
+      </ListWrap>
+    </div>
+  )
 }
 
 const RowStyle = styled(Row)`
-    text-align: center;
+  text-align: center;
 `
 
 const ListWrap = styled.div`
-    margin-top: 20px;
+  margin-top: 20px;
 `
 
-export default Form.create()(User);
+export default Form.create()(User)
