@@ -30,7 +30,7 @@ class App extends React.Component {
                   />
                 )
               })}
-              <Redirect exact from='/' to={routes[0].path} />
+              <Redirect exact from='/app1' to={routes[0].path} />
             </Switch>
           </Router>
         </Suspense>

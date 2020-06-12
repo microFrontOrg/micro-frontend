@@ -2,7 +2,7 @@
  * @Description: 开发服务器配置
  * @Author: 郭军伟
  * @Date: 2020-04-29 09:08:37
- * @LastEditTime: 2020-05-18 14:14:53
+ * @LastEditTime: 2020-06-11 17:50:29
  */ 
 const devServer = {
     historyApiFallback: true,
@@ -10,7 +10,7 @@ const devServer = {
     hot: true,
     open: false,
     overlay: true,
-    port: 1002,
+    port: 2002,
     quiet: true,
     stats: {
         warning: true,
