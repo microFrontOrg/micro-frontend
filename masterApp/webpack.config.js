@@ -12,7 +12,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const Visualizer = require('webpack-visualizer-plugin');
-const webpack = require('webpack')
+const webpack = require('webpack');
 const HappyPick = require('happypack');
 const cpuLen = require('os').cpus().length;
 const happyThreadPool = HappyPick.ThreadPool({ size: cpuLen });
@@ -21,7 +21,7 @@ const isDev = process.env.NODE_ENV === 'development';
 
 const webpackConfig = {
   mode: isDev ? 'development' : 'production',
-  devtool: isDev ? "cheap-module-eval-source-map" : "none",
+  devtool: isDev ? 'cheap-module-eval-source-map' : 'none',
   entry: {
     main: './src/index',
   },
@@ -30,21 +30,30 @@ const webpackConfig = {
   output: {
     filename: '[name].[hash:8].js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '//localhost:1000/'
+    publicPath: '//localhost:2000/',
   },
   resolve: {
-    extensions: ['.jsx', '.js'],
+    extensions: ['.tsx', '.ts', '.jsx', '.js'],
     modules: ['node_modules'],
     alias: {
-      '@': path.resolve(__dirname, 'src')
-    }
+      '@': path.resolve(__dirname, 'src'),
+    },
   },
   module: {
     rules: [
       {
+        test: /\.tsx?$/,
+        loader: 'awesome-typescript-loader',
+        options: {
+          useCache: true, // Use internal file cache
+          useBabel: true, // Invoke Babel to transpile files
+          babelCore: '@babel/core',
+        },
+      },
+      {
         test: /\.jsx?$/,
         include: path.resolve(__dirname, 'src'),
-        use: 'happypack/loader?id=jsx'
+        use: 'happypack/loader?id=jsx',
       },
       {
         test: /\.(less|css)$/,
@@ -52,13 +61,13 @@ const webpackConfig = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              hmr: isDev
-            }
+              hmr: isDev,
+            },
           },
-          "css-loader",
-          "postcss-loader",
-          "less-loader"
-        ]
+          'css-loader',
+          'postcss-loader',
+          'less-loader',
+        ],
       },
       {
         test: /\.(jpg|jpeg|png|gif|webp|svg)$/,
@@ -69,10 +78,10 @@ const webpackConfig = {
               limit: 1024 * 10,
               esModule: false,
               name: '[name]_[hash:8].[ext]',
-              outputPath: 'assets/images'
-            }
-          }
-        ]
+              outputPath: 'assets/images',
+            },
+          },
+        ],
       },
       {
         test: /\.(eot|ttf|woff|woff2)$/,
@@ -83,12 +92,12 @@ const webpackConfig = {
               limit: 1024 * 10,
               esModule: false,
               name: '[name]_[hash:8].[ext]',
-              outputPath: 'assets/fonts'
-            }
-          }
-        ]
-      }
-    ]
+              outputPath: 'assets/fonts',
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new webpack.ProvidePlugin({
@@ -96,31 +105,33 @@ const webpackConfig = {
       Component: ['react', 'Component'],
       lazy: ['react', 'lazy'],
       PropTypes: 'prop-types',
-      styled: ['styled-components', 'default']
+      styled: ['styled-components', 'default'],
     }),
     new HappyPick({
       id: 'jsx',
       threads: 4,
       loaders: ['babel-loader'],
-      threadPool: happyThreadPool
+      threadPool: happyThreadPool,
     }),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: './public/index.html'
+      template: './public/index.html',
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: '[name].[hash:8].css'
+      filename: '[name].[hash:8].css',
     }),
     new OptimizeCssAssetsPlugin(),
     new FriendlyErrorsWebpackPlugin({
       compilationSuccessInfo: {
-        messages: [`Your applacation is running here ${devServer.host}:${devServer.port}`]
-      }
+        messages: [
+          `Your applacation is running here ${devServer.host}:${devServer.port}`,
+        ],
+      },
     }),
     new Visualizer({
-      filename: './statistics.html'
+      filename: './statistics.html',
     }),
     new webpack.NamedModulesPlugin(),
   ],
@@ -130,12 +141,12 @@ const webpackConfig = {
         vender: {
           test: /node_modules/,
           name: 'vender',
-          chunks: 'all'
+          chunks: 'all',
         },
-      }
+      },
     },
-    runtimeChunk: 'single'
-  }
-}
+    runtimeChunk: 'single',
+  },
+};
 
 module.exports = webpackConfig;

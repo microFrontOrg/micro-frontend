@@ -1,22 +1,23 @@
-import { Suspense } from 'react'
-import { Form, Row, Col, Input, Button, ConfigProvider } from 'antd'
-import zh_CN from 'antd/es/locale/zh_CN'
-import SystemLayout from '@/layouts/SystemLayout'
-import Login from '@/pages/Login'
-import './index.less'
+import { Suspense } from 'react';
+import { Form, Row, Col, Input, Button, ConfigProvider } from 'antd';
+import zh_CN from 'antd/es/locale/zh_CN';
+import SystemLayout from '@/layouts/SystemLayout';
+import Login from '../pages/Login/index';
+import './index.less';
 import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect
-} from 'react-router-dom'
+  Redirect,
+} from 'react-router-dom';
+import React from 'react';
 
 class App extends React.Component {
-  constructor (props) {
-    super(props)
+  constructor(props: Readonly<{}>) {
+    super(props);
   }
 
-  render () {
+  render() {
     return (
       <ConfigProvider locale={zh_CN}>
         <Suspense fallback={<div>loading</div>}>
@@ -29,8 +30,8 @@ class App extends React.Component {
           </Router>
         </Suspense>
       </ConfigProvider>
-    )
+    );
   }
 }
 
-export default Form.create()(App)
+export default Form.create()(App);

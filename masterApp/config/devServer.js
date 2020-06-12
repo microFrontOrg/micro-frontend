@@ -10,7 +10,7 @@ const devServer = {
     hot: true,
     open: true,
     overlay: true,
-    port: 1000,
+    port: 2000,
     quiet: true,
     stats: {
         warning: true,

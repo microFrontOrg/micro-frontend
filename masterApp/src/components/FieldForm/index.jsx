@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import InputForm from '../InputForm';
 import SelectForm from '../SelectForm';
 import RadioForm from '../RadioForm';
@@ -7,9 +8,9 @@ import DatePickerForm from '../DatePickerForm';
 import RateForm from '../RateForm';
 import CascaderForm from '../CascaderForm';
 import SliderForm from '../SliderForm';
+import React from 'react';
 
-class FieldForm extends Component {
-
+class FieldForm extends React.Component {
   getComponent() {
     const { type, ...restProp } = this.props;
     switch (type) {
@@ -17,20 +18,30 @@ class FieldForm extends Component {
       case 'password':
       case 'textarea':
       case 'number':
-      case 'search': return <InputForm type={type} {...restProp} />;
-      case 'select': return <SelectForm {...restProp} />;
-      case 'radio': return <RadioForm {...restProp} />
-      case 'switch': return <SwitchForm {...restProp} />;
+      case 'search':
+        return <InputForm type={type} {...restProp} />;
+      case 'select':
+        return <SelectForm {...restProp} />;
+      case 'radio':
+        return <RadioForm {...restProp} />;
+      case 'switch':
+        return <SwitchForm {...restProp} />;
       case 'checkbox':
-      case 'totalCheckbox': return <CheckboxForm type={type} {...restProp} />
+      case 'totalCheckbox':
+        return <CheckboxForm type={type} {...restProp} />;
       case 'date':
       case 'month':
       case 'range':
-      case 'week': return <DatePickerForm type={type} {...restProp} />
-      case 'rate': return <RateForm {...restProp} />
-      case 'cascader': return <CascaderForm {...restProp} />
-      case 'slider': return <SliderForm {...restProp} />
-      default: return <InputForm type={type} {...restProp} />;
+      case 'week':
+        return <DatePickerForm type={type} {...restProp} />;
+      case 'rate':
+        return <RateForm {...restProp} />;
+      case 'cascader':
+        return <CascaderForm {...restProp} />;
+      case 'slider':
+        return <SliderForm {...restProp} />;
+      default:
+        return <InputForm type={type} {...restProp} />;
     }
   }
 
@@ -41,7 +52,7 @@ class FieldForm extends Component {
 
 FieldForm.defaultProps = {
   type: 'input',
-}
+};
 
 FieldForm.propTypes = {
   type: PropTypes.oneOf([
@@ -63,6 +74,6 @@ FieldForm.propTypes = {
     'cascader',
     'slider',
   ]),
-}
+};
 
 export default FieldForm;

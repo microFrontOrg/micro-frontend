@@ -1,0 +1,30 @@
+/*
+ * @Description:
+ * @Author: 郭军伟
+ * @Date: 2020-06-12 14:40:24
+ * @LastEditTime: 2020-06-12 15:12:20
+ */
+
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "strictNullChecks": false,
+    "module": "commonjs",
+    "target": "ESNext",
+    "jsx": "react",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "moduleResolution": "node",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "skipLibCheck": true
+  },
+  "include": ["./src/**/*"]
+}
